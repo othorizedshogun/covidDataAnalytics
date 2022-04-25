@@ -52,7 +52,7 @@ ORDER BY PercentPopulationInfected DESC
 -- 4.
 
 
-SELECT location, population, cast(date as DATE), MAX(total_cases) AS HighestInfectionCount,  MAX((total_cases/population))*100 AS PercentPopulationInfected
+SELECT location, population, cast(date AS DATE), MAX(total_cases) AS HighestInfectionCount,  MAX((total_cases/population))*100 AS PercentPopulationInfected
 FROM "covidDataAnalytics".public.covid_deaths
 --WHERE location = 'Nigeria'
 GROUP BY location, population, date
