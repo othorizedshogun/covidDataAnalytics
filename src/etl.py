@@ -7,9 +7,23 @@ import glob
 # Change list items to preferred table names
 datasetNames = [0, "covid_deaths", "covid_vaccinations"]
 
+def format_date(dataframe):
+    """ Refactor the dataframe to be uploaded into a SQL database
+    as a pandas DataFrame
+    """
+
+    # filename is datetime
+    date_fields = ['date']
+    for date_field in date_fields:
+        if date_field in dataframe:
+            dataframe[date_field] = pd.to_datetime(dataframe[date_field])
+
+    return dataframe
+
 def load_data(conn, filepath, table_name):
     # open song file
     dataframe = pd.read_csv(filepath)
+    dataframe = format_date(dataframe, )
     dataframe.to_sql(table_name, con=conn, index=False, if_exists="replace")
 
 
